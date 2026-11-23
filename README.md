@@ -1,58 +1,17 @@
-# Python File Encryption Scripts
+# File encryption exercise
 
-Python scripts for file encryption/decryption on Linode cloud platform. Based on tutorial: [Encryption Tutorial](https://www.youtube.com/watch?v=UtMMjXOlRQc)
+My Python encryption and decryption exercise, based on [NetworkChuck’s tutorial](https://www.youtube.com/watch?v=UtMMjXOlRQc).
 
-## Description
-This project implements file encryption and decryption scripts designed to work with cloud storage on the Linode platform. The scripts provide secure file handling and demonstrate basic cryptographic principles.
+The two scripts use `cryptography.fernet` to encrypt and decrypt files in the current directory. They do not accept input/output filename arguments and do not call the Linode API.
 
-## Technologies
-- Python 3.x 
-- Cryptography library
-- Linode platform
-- Linux commands
+## Read before running
 
-## Features
-- File encryption using symmetric key algorithms
-- Secure key generation and storage
-- File decryption capabilities
-- Cloud storage integration
-- Batch processing support
-- Command-line interface
+`encrypt.py` generates a key, writes it to `thekey.key`, and overwrites the files it selects in the current directory. Its exclusion list still refers to `voldemort.py`, the tutorial’s filename, so it can also select the scripts themselves.
 
-## Requirements
-- Python 3.6+
-- cryptography package
-- Linode account and API access
-- Linux/Unix environment
+`decrypt.py` reads `thekey.key` and attempts to decrypt the selected files in place. Decryption depends on keeping the original key.
 
-## Installation
-1. Clone repository:
-2. pip install cryptography
-3. pip install linode-api4
-4. export LINODE_TOKEN='your_api_token'
+Use disposable copies in a separate test folder if you want to study the behaviour. This repo is a learning exercise, not a backup or file-protection tool.
 
-## Usage
-To encrypt a file:
-bashCopypython encrypt.py <input_file> <output_file>
-To decrypt a file:
-bashCopypython decrypt.py <encrypted_file> <output_file>
+## Dependency
 
-## Security Considerations
-
-Store encryption keys securely
-Use strong passwords
-Keep encrypted backups
-Don't share keys in plaintext
-Regular key rotation recommended
-
-## Project Structure
-Copy├── src/
-│   ├── encrypt.py
-│   ├── decrypt.py
-│   └── utils.py
-├── tests/
-├── requirements.txt
-└── README.md
-
-## Credits
-Based on the tutorial by NetworkChuck
+Python and the `cryptography` package.
